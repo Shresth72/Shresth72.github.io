@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather Forcasting Website</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+      integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- <div class="div"></div> -->
+
+    <nav>
+      <div class="navbar navbar-first">
+        <a href="#" class="grid-icon icon">
+          <i class="fa-solid fa-gear"></i>
+        </a>
+        <a href="#" class="notification-icon icon">
+          <i class="fa-solid fa-bell"></i>
+        </a>
+        <div class="location">
+          <i class="fa-solid fa-location-dot"></i>
+          <div class="loc-text">
+            <span class="city">Delhi</span>, <span class="country">India</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="navbar navbar-sec">
+        <div class="search-box">
+          <input class="search-text" type="text" placeholder="Search city.." />
+          <a href="#" class="search-btn">
+            <i class="fas fa-search"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="navbar navbar-third">
+        <div class="profile"></div>
+      </div>
+    </nav>
+
+    <main>
+      <div class="container" id="days">
+        <h2><span class="currTime"></span>, Next 5 Days</h2>
+
+        <div class="group">
+          <div class="item">
+            <div class="head">
+              <h1>Monday</h1>
+            </div>
+            <div class="details">
+              <div class="temp">26°</div>
+              <img src="./images/vectors/sunny.svg" alt="" />
+            </div>
+          </div>
+          <div class="item">
+            <div class="head">
+              <h1>Tuesday</h1>
+            </div>
+            <div class="details">
+              <div class="temp">15°</div>
+              <img src="./images/vectors/cloudy.svg" alt="" />
+            </div>
+          </div>
+          <div class="item">
+            <div class="head">
+              <h1>Tuesday</h1>
+            </div>
+            <div class="details">
+              <div class="temp">10°</div>
+              <img src="./images/vectors/rain.svg" alt="" />
+            </div>
+          </div>
+          <div class="item">
+            <div class="head">
+              <h1>Tuesday</h1>
+            </div>
+            <div class="details">
+              <div class="temp">7°</div>
+              <img src="./images/vectors/thunder.svg" alt="" />
+            </div>
+          </div>
+          <div class="item">
+            <div class="head">
+              <h1>Tuesday</h1>
+            </div>
+            <div class="details">
+              <div class="temp">2°</div>
+              <img src="./images/vectors/hail.svg" alt="" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container" id="chart">
+        <h1>Chance of Rain</h1>
+        <canvas id="bar-chart" width="780" height="670"></canvas>
+      </div>
+
+      <div class="container" id="map">
+        <!-- https://www.windy.com/28.610/77.200?27.379,78.340,5 delhi-->
+        <!-- https://www.windy.com/35.680/139.760?28.710,128.013,5 tokyo-->
+        <div class="card">
+          <div class="title">
+            Explore the global map of wind and weather of this place
+          </div>
+          <div id="location"></div>
+          <a
+            class="explore"
+            type="button"
+            target="_blank"
+            href="https://www.windy.com/28.610/77.200?27.379,78.340,5"
+            >Explore</a
+          >
+        </div>
+
+        <div class="loc-points">
+          <button type="button" class="delhi point"></button>
+          <button type="button" class="tokyo point"></button>
+          <button type="button" class="london point"></button>
+          <button type="button" class="australia point"></button>
+          <button type="button" class="capetown point"></button>
+        </div>
+      </div>
+
+      <div class="container" id="other-cities">
+        <div class="heading">
+          <h1>Other large cities</h1>
+          <button type="button" class="showAll">
+            Show all <i class="fa-solid fa-chevron-right"></i>
+          </button>
+        </div>
+        <div class="group">
+          <div class="item">
+            <div class="text">
+              <h3>US</h3>
+              <h1>California</h1>
+              <h2>Sunny</h2>
+            </div>
+            <div class="image">
+              <img src="./images/vectors/sunny.svg" alt="" />
+              <div class="temp" id="california">25°</div>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="text">
+              <h3>JAPAN</h3>
+              <h1>TOKYO</h1>
+              <h2>Cloudy</h2>
+            </div>
+            <div class="image">
+              <img src="./images/vectors/cloudy.svg" alt="" />
+              <div class="temp" id="tokyo">16°</div>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="text">
+              <h3>UK</h3>
+              <h1>London</h1>
+              <h2>Thunderstorm</h2>
+            </div>
+            <div class="image">
+              <img src="./images/vectors/thunder.svg" alt="" />
+              <div class="temp" id="london">3°</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script src="script.js"></script>
+      <script src="axios.js"></script>
+      <script src="https://unpkg.co/gsap@3/dist/gsap.min.js"></script>
+    </main>
+  </body>
+</html>
